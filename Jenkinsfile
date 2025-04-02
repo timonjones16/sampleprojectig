@@ -1,5 +1,11 @@
 pipeline {
-    agent any
+    agent {
+ docker {
+            image 'docker:latest'  // Use an image that includes Docker CLI
+            args '--privileged -v /var/run/docker.sock:/var/run/docker.sock'
+        }
+
+    }
  tools {
         maven 'maven1'
     }    
