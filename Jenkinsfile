@@ -1,11 +1,5 @@
 pipeline {
-    agent {
- docker {
-            image 'docker:latest'  // Use an image that includes Docker CLI
-            
-        }
-
-    }
+    agent any
  tools {
         maven 'maven1'
     }    
