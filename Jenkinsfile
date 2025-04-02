@@ -40,7 +40,7 @@ pipeline {
                       //   	docker build -t nodejs-server -f Dockerfile.arg --build-arg UBUNTU_VERSION=18.04
 		             //--build-arg CUDA_VERSION=10.0
                      //bat 'docker build -t  docker.repository.esi.adp.com/clientcentral/training:docker_jenkins_springboot:${BUILD_NUMBER} .'
-           	    sh 'docker build -t  sampleproject --build-arg VER=1.0 .'
+           	    sh 'docker build -t  sampleproject .'
 		         }
              }
         stage('Docker Login'){
