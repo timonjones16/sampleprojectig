@@ -32,7 +32,7 @@ pipeline {
    			}
         stage('Maven Build') { 
             steps {
-                bat 'mvn clean install'
+                sh 'mvn clean install'
                   }
             }
         stage('Build Docker image'){
@@ -51,12 +51,12 @@ pipeline {
         }
         stage('Docker Push'){
             steps {
-                bat 'docker push aruna708/sampleproject'
+                sh 'docker push aruna708/sampleproject'
             }
         }
         stage('Docker deploy'){
             steps {
-                bat 'docker run -itd -p  8086:8086 sampleproject'
+                sh 'docker run -itd -p  8086:8086 sampleproject'
              }
         }
     
