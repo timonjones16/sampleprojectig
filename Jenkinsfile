@@ -37,12 +37,18 @@ pipeline {
                   }
             }
 stage('docker test') { 
+	environment {
+    DOCKER_HOST = "tcp://host.docker.internal:2375"
+}
 	    steps {
         sh 'sudo docker ps'
     }
 }
         stage('Build Docker image'){
            steps {
+		   environment {
+    DOCKER_HOST = "tcp://host.docker.internal:2375"
+}
                       //   	docker build -t nodejs-server -f Dockerfile.arg --build-arg UBUNTU_VERSION=18.04
 		             //--build-arg CUDA_VERSION=10.0
                      //bat 'docker build -t  docker.repository.esi.adp.com/clientcentral/training:docker_jenkins_springboot:${BUILD_NUMBER} .'
@@ -51,16 +57,23 @@ stage('docker test') {
              }
         stage('Docker Login'){
             steps {
+		    
               echo "docker login from console"
                 //docker login docker.repository.esi.adp.com -u clientcentralcicd -p $adpdtrrepopassword
             }                
         }
         stage('Docker Push'){
+		environment {
+    DOCKER_HOST = "tcp://host.docker.internal:2375"
+}
             steps {
                 sh 'sudo docker push aruna708/sampleproject'
             }
         }
         stage('Docker deploy'){
+		environment {
+    DOCKER_HOST = "tcp://host.docker.internal:2375"
+}
             steps {
                 sh 'sudo docker run -itd -p  8086:8086 sampleproject'
              }
