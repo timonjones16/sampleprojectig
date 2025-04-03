@@ -38,7 +38,7 @@ pipeline {
             }
 stage('docker test') { 
 	    steps {
-        sh 'docker ps'
+        sh 'sudo docker ps'
     }
 }
         stage('Build Docker image'){
@@ -46,7 +46,7 @@ stage('docker test') {
                       //   	docker build -t nodejs-server -f Dockerfile.arg --build-arg UBUNTU_VERSION=18.04
 		             //--build-arg CUDA_VERSION=10.0
                      //bat 'docker build -t  docker.repository.esi.adp.com/clientcentral/training:docker_jenkins_springboot:${BUILD_NUMBER} .'
-           	    sh 'docker build -t  sampleproject .'
+           	    sh 'sudo docker build -t  sampleproject .'
 		         }
              }
         stage('Docker Login'){
@@ -57,12 +57,12 @@ stage('docker test') {
         }
         stage('Docker Push'){
             steps {
-                sh 'docker push aruna708/sampleproject'
+                sh 'sudo docker push aruna708/sampleproject'
             }
         }
         stage('Docker deploy'){
             steps {
-                sh 'docker run -itd -p  8086:8086 sampleproject'
+                sh 'sudo docker run -itd -p  8086:8086 sampleproject'
              }
         }
     
