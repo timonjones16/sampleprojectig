@@ -35,7 +35,7 @@ pipeline {
                 sh 'mvn clean install'
                   }
             }
-stage('Maven Build') { 
+stage('docker test') { 
 	    steps {
         sh 'docker ps'
     }
