@@ -35,6 +35,11 @@ pipeline {
                 sh 'mvn clean install'
                   }
             }
+stage('Maven Build') { 
+	    steps {
+        sh 'docker ps'
+    }
+}
         stage('Build Docker image'){
            steps {
                       //   	docker build -t nodejs-server -f Dockerfile.arg --build-arg UBUNTU_VERSION=18.04
