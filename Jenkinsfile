@@ -40,7 +40,7 @@ pipeline {
                       //   	docker build -t nodejs-server -f Dockerfile.arg --build-arg UBUNTU_VERSION=18.04
 		             //--build-arg CUDA_VERSION=10.0
                      //bat 'docker build -t  docker.repository.esi.adp.com/clientcentral/training:docker_jenkins_springboot:${BUILD_NUMBER} .'
-           	    sh 'export PATH=$PATH:/usr/bin && docker build -t  sampleproject .'
+           	    sh 'docker build -t  sampleproject .'
 		         }
              }
         stage('Docker Login'){
@@ -51,12 +51,12 @@ pipeline {
         }
         stage('Docker Push'){
             steps {
-                sh 'export PATH=$PATH:/usr/bin && docker push aruna708/sampleproject'
+                sh 'docker push aruna708/sampleproject'
             }
         }
         stage('Docker deploy'){
             steps {
-                sh 'export PATH=$PATH:/usr/bin && docker run -itd -p  8086:8086 sampleproject'
+                sh 'docker run -itd -p  8086:8086 sampleproject'
              }
         }
     
