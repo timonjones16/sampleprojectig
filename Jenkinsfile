@@ -55,7 +55,11 @@ stage('docker test') {
             steps {
 		    
               //echo "docker login from console"
-                docker login hub.docker.com -u arunajava567@gmail.com -p $aruna708*
+               // docker login hub.docker.com -u arunajava567@gmail.com -p $aruna708*
+		    script {
+                    withCredentials([usernamePassword(credentialsId: DOCKER_CREDENTIALS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        sh 'docker login -u "$arunajava567@gmail.com" -p "$aruna708*"'
+                    }
 		    
             }                
         }
