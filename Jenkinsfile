@@ -51,12 +51,18 @@ stage('docker test') {
            	    sh 'docker build -t  sampleproject .'
 		         }
              }
-        stage('Docker Login'){
+	     stage('Docker Login'){
             steps {
 		    
               //echo "docker login from console"
-                //docker login docker.repository.esi.adp.com -u clientcentralcicd -p $adpdtrrepopassword
-		      sh 'docker tag sampleproject  aruna708/sampleproject:latest'
+                docker login hub.docker.com -u arunajava567@gmail.com -p $aruna708*
+		    
+            }                
+        }
+        stage('Docker Tag'){
+            steps {
+		    
+          	      sh 'docker tag sampleproject  aruna708/sampleproject:latest'
             }                
         }
         stage('Docker Push'){
