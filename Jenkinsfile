@@ -54,8 +54,9 @@ stage('docker test') {
         stage('Docker Login'){
             steps {
 		    
-              echo "docker login from console"
+              //echo "docker login from console"
                 //docker login docker.repository.esi.adp.com -u clientcentralcicd -p $adpdtrrepopassword
+		      sh 'docker tag sampleproject  aruna708/sampleproject:latest'
             }                
         }
         stage('Docker Push'){
