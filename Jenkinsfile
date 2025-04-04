@@ -63,6 +63,7 @@ stage('docker test') {
 		    
             }                
         }
+	     }
         stage('Docker Tag'){
             steps {
 		    
