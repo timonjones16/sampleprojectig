@@ -73,7 +73,7 @@ stage('docker test') {
         stage('Docker Push'){
 	
             steps {
-                sh 'docker push aruna708/sampleproject'
+                sh 'docker push aruna708/aruna708/sampleproject'
             }
         }
         stage('Docker deploy'){
