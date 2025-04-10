@@ -72,7 +72,12 @@ stage('docker test') {
         }
         stage('Docker Push'){
 	
-            steps { sh 'docker push aruna708/sampleproject:latest'
+            steps {
+		    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'aruna708', passwordVariable: Aruna708*')]) {
+   			 sh 'echo "$Aruna708*" | docker login -u "$aruna708" --password-stdin'
+   
+			}
+		    sh 'docker push aruna708/sampleproject:latest'
                
             }
         }
