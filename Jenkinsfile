@@ -25,9 +25,9 @@ pipeline {
 	        }
 		stage('SonarQube'){
 			steps{
-			//	bat label: '', script: '''mvn sonar:sonar \
-			//	-Dsonar.host.url=http://CDLVDIDEVMAN500:9000 \
-			//	-Dsonar.login=c0909bf6713cd534393d47364d1da553431a220d'''
+				sh label: '', script: '''mvn sonar:sonar \
+				-Dsonar.host.url=http://localhost:9000 \
+				-Dsonar.login=squ_8530695a8134c03865b10fb062f50f2493c0986a'''
 			echo 'Sonar Code Scanning '
 				}	
    			}
