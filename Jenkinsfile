@@ -3,7 +3,12 @@ pipeline {
   	tools{
 		maven 'maven1'
 	}
-	
+
+	 stage('Checkout') {
+            steps {
+                bat 'git scm'
+            }
+        }
     stages {
             stage('Compile and Clean') { 
                 steps {
