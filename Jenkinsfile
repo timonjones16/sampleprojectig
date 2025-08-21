@@ -7,13 +7,13 @@ pipeline {
     stages {
             stage('Compile and Clean') { 
                 steps {
-                       sh 'mvn compile'
+                       bat 'mvn compile'
                       }
             }
        
 	        stage('Junit5 Test') { 
                  steps {
-	                sh 'mvn test'
+	                bat 'mvn test'
                   }
             }
 
@@ -33,13 +33,13 @@ pipeline {
    			}
         stage('Maven Build') { 
             steps {
-                sh 'mvn clean install'
+                bat 'mvn clean install'
                   }
             }
 stage('docker test') { 
 	
 	    steps {
-        sh 'docker ps'
+        bat 'docker ps'
     }
 }
         stage('Build Docker image'){
@@ -48,7 +48,7 @@ stage('docker test') {
                       //   	docker build -t nodejs-server -f Dockerfile.arg --build-arg UBUNTU_VERSION=18.04
 		             //--build-arg CUDA_VERSION=10.0
                      //bat 'docker build -t  docker.repository.esi.adp.com/clientcentral/training:docker_jenkins_springboot:${BUILD_NUMBER} .'
-           	    sh 'docker build -t  sampleproject .'
+           	    bat 'docker build -t  sampleproject .'
 		         }
              }
 	     stage('Docker Login'){
@@ -67,7 +67,7 @@ stage('docker test') {
         stage('Docker Tag'){
             steps {
 		    
-          	      sh 'docker tag sampleproject  aruna708/sampleproject:latest'
+          	      bat 'docker tag sampleproject  aruna708/sampleproject:latest'
             }                
         }
         stage('Docker Push'){
@@ -79,14 +79,14 @@ stage('docker test') {
                         docker push aruna708/sampleproject:latest
                     '''
                 }
-		//   sh 'docker push aruna708/sampleproject:latest'
+		   bat 'docker push aruna708/sampleproject:latest'
                
             }
         }
         stage('Docker deploy'){
 	
             steps {
-                sh 'docker run -itd -p  8086:8086 sampleproject'
+                bat 'docker run -itd -p  8086:8086 sampleproject'
              }
         }
     
